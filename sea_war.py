@@ -56,6 +56,16 @@ btn_1.place(x=size_canv_x+20, y=30)
 btn_2 = Button(tk, text="Start a new game", command=start_new_game)
 btn_2.place(x=size_canv_x+20, y=70)
 
+def add_all(event):
+    _type = 0
+    if event.num == 3:
+        _type = 1
+    mouse_x = canvas.winfo_pointerx() - canvas.winfo_rootx()
+    mouse_y = canvas.winfo_pointery() - canvas.winfo_rooty()
+    
+canvas.bind_all("<Button-1>", add_all)  # left mouse button
+canvas.bind_all("<Button-3>", add_all)  # right mouse button
+
 while app:
     if app:
         tk.update_idletasks()
