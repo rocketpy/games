@@ -60,8 +60,12 @@ def add_all(event):
     _type = 0
     if event.num == 3:
         _type = 1
+        
     mouse_x = canvas.winfo_pointerx() - canvas.winfo_rootx()
     mouse_y = canvas.winfo_pointery() - canvas.winfo_rooty()
+    
+    cell_x = mouse_x // step_x
+    cell_y = mouse_y // step_y
     
 canvas.bind_all("<Button-1>", add_all)  # left mouse button
 canvas.bind_all("<Button-3>", add_all)  # right mouse button
