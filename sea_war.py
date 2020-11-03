@@ -1,4 +1,5 @@
 import time
+import random
 from tkinter import *
 from tkinter import messagebox
 
@@ -24,6 +25,8 @@ ships = s_x // 2  # max quant
 ship_type_1 = s_x // 5
 ship_type_2 = s_x // 3
 ship_type_3 = s_x // 2
+
+enemy_ships = [[0 for i in range(s_x)] for i in range(s_x)]
 
 def closing_window():
     global app
@@ -75,6 +78,14 @@ def add_all(event):
 canvas.bind_all("<Button-1>", add_all)  # left mouse button
 canvas.bind_all("<Button-3>", add_all)  # right mouse button
 
+def gen_enemy_ships():
+    global enemy_ships
+    list_ships = []
+    for i in range(0, ships):
+        list_ships.append(random.choice([ship_type_1, ship_type_2, ship_type_3]))
+
+gen_enemy_ships()    
+    
 while app:
     if app:
         tk.update_idletasks()
