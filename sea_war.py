@@ -17,12 +17,17 @@ step_y = size_canv_y // s_y
 # size_canv_x = step_x * s_x  # using this if change size of cells
 # size_canv_y = step_y 8 s_y  # same
 
-#  field for menu
-menu_field_x = 250
+menu_field_x = 250  #  field for menu
+
+ships = s_x // 2  # max quant 
+
+ship_type_1 = s_x // 5
+ship_type_2 = s_x // 3
+ship_type_3 = s_x // 2
 
 def closing_window():
     global app
-    if messagebox.askokcancel("Exit Game", "Do you want to exit ?"):
+    if messagebox.askokcancel("Exit", "Do you want to exit ?"):
         app = False
         tk.destroy()
         
