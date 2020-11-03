@@ -26,7 +26,9 @@ ship_type_1 = s_x // 5
 ship_type_2 = s_x // 3
 ship_type_3 = s_x // 2
 
-enemy_ships = [[0 for i in range(s_x)] for i in range(s_x)]
+enemy_ships = [[0 for i in range(s_x+1)] for i in range(s_x+1)]
+
+list_ids = []
 
 def closing_window():
     global app
@@ -54,8 +56,12 @@ def create_table():
 create_table()
 
 def show_enemy_ships():
-    pass
-
+    for i in range(0, s_x):
+        for j in range(0, s_y):
+            if enemy_ships[j][i] > 0:
+                _id = canvas.create_rectangle(i * step_x, j * step_y, i * step_x + step_x, j * step_y + step_y, fill="red")
+                list_ids.append(_id)
+    
 def start_new_game():
     pass
 
@@ -84,6 +90,66 @@ def gen_enemy_ships():
     for i in range(0, ships):
         list_ships.append(random.choice([ship_type_1, ship_type_2, ship_type_3]))
 
+    sum_all_ships = sum(list_ships)
+    sum_enemy_ships = 0
+    
+    while sum_enemy_ships != sum_all_ships:
+        enemy_ships = [[0 for i in range(s_x + 1)] for i in
+                       range(s_y + 1)]  
+
+        for i in range(0, ships):
+            len = ships_list[i]
+            horizont_vertikal = random.randrange(1, 3) 
+
+            primerno_x = random.randrange(0, s_x)
+            if primerno_x + len > s_x:
+                primerno_x = primerno_x - len
+
+            primerno_y = random.randrange(0, s_y)
+            if primerno_y + len > s_y:
+                primerno_y = primerno_y - len
+
+            if horizont_vertikal == 1:
+                if primerno_x + len <= s_x:
+                    for j in range(0, len):
+                        try:
+                            check_near_ships = 0
+                            check_near_ships = enemy_ships[primerno_y][primerno_x - 1] + \
+                                               enemy_ships[primerno_y][primerno_x + j] + \
+                                               enemy_ships[primerno_y][primerno_x + j + 1] + \
+                                               enemy_ships[primerno_y + 1][primerno_x + j + 1] + \
+                                               enemy_ships[primerno_y - 1][primerno_x + j + 1] + \
+                                               enemy_ships[primerno_y + 1][primerno_x + j] + \
+                                               enemy_ships[primerno_y - 1][primerno_x + j]
+                            # print(check_near_ships)
+                            if check_near_ships == 0: 
+                                enemy_ships[primerno_y][primerno_x + j] = i + 1  
+                        except Exception:
+                            pass
+            if horizont_vertikal == 2:
+                if primerno_y + len <= s_y:
+                    for j in range(0, len):
+                        try:
+                            check_near_ships = 0
+                            check_near_ships = enemy_ships[primerno_y - 1][primerno_x] + \
+                                               enemy_ships[primerno_y + j][primerno_x] + \
+                                               enemy_ships[primerno_y + j + 1][primerno_x] + \
+                                               enemy_ships[primerno_y + j + 1][primerno_x + 1] + \
+                                               enemy_ships[primerno_y + j + 1][primerno_x - 1] + \
+                                               enemy_ships[primerno_y + j][primerno_x + 1] + \
+                                               enemy_ships[primerno_y + j][primerno_x - 1]
+                            
+                            if check_near_ships == 0:  
+                                enemy_ships[primerno_y + j][primerno_x] = i + 1  
+                        except Exception:
+                            pass
+
+        sum_1_enemy = 0
+        for i in range(0, s_x):
+            for j in range(0, s_y):
+                if enemy_ships[j][i] > 0:
+                    sum_1_enemy = sum_1_enemy + 1
+        
 gen_enemy_ships()    
     
 while app:
