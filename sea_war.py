@@ -63,8 +63,11 @@ def show_enemy_ships():
                 list_ids.append(_id)
     
 def start_new_game():
-    pass
-
+    global list_ids
+    for i in list_ids:
+        canvas.delete(i)
+    list_ids = []
+        
 btn_1 = Button(tk, text="Show enemy ships", command=show_enemy_ships)
 btn_1.place(x=size_canv_x+20, y=30)
 btn_2 = Button(tk, text="Start a new game", command=start_new_game)
