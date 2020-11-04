@@ -36,7 +36,6 @@ def closing_window():
         app = False
         tk.destroy()
         
-
 tk.protocol(WM_DELETE_WINDOW, closing_window)
 tk.title("Sea  Buttle")
 tk.resizable(0, 0)  # no change window
@@ -67,6 +66,7 @@ def start_new_game():
     for i in list_ids:
         canvas.delete(i)
     list_ids = []
+    gen_enemy_ships()
         
 btn_1 = Button(tk, text="Show enemy ships", command=show_enemy_ships)
 btn_1.place(x=size_canv_x+20, y=30)
