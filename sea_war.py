@@ -73,6 +73,16 @@ btn_1.place(x=size_canv_x+20, y=30)
 btn_2 = Button(tk, text="Start a new game", command=start_new_game)
 btn_2.place(x=size_canv_x+20, y=70)
 
+def draw_point(x, y):
+    if enemy_ships[y][x] == 0:
+        color = "red"
+        id_1 = canvas.create_oval(x * step_x, y * step_y, x * step_x + step_x, y * step_y + step_y, fill=color)
+        id_2 = canvas.create_oval(x * step_x + step_x // 3, y * step_y + step_y // 3, x * step_x + step_x - step_x // 3,
+                                 y * step_y + step_y - step_y // 3, fill="white")        
+    if enemy_ships[y][x] > 0:
+        
+
+
 def add_all(event):
     _type = 0
     if event.num == 3:
