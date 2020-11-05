@@ -84,6 +84,9 @@ def add_all(event):
     cell_x = mouse_x // step_x
     cell_y = mouse_y // step_y
     
+    if cell_x < s_x and cell_y < s_y:
+        draw_point(cell_x, cell_y)
+    
 canvas.bind_all("<Button-1>", add_all)  # left mouse button
 canvas.bind_all("<Button-3>", add_all)  # right mouse button
 
