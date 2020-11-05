@@ -78,9 +78,13 @@ def draw_point(x, y):
         color = "red"
         id_1 = canvas.create_oval(x * step_x, y * step_y, x * step_x + step_x, y * step_y + step_y, fill=color)
         id_2 = canvas.create_oval(x * step_x + step_x // 3, y * step_y + step_y // 3, x * step_x + step_x - step_x // 3,
-                                 y * step_y + step_y - step_y // 3, fill="white")        
+                                 y * step_y + step_y - step_y // 3, fill="white")
+        list_ids.append(id_1)
+        list_ids.append(id_2)        
     if enemy_ships[y][x] > 0:
-        
+        color = "blue"
+        id1 = canvas.create_rectangle(x * step_x, y * step_y + step_y // 2 - step_y // 10, x * step_x + step_x,
+                                      y * step_y + step_y // 2 + step_y // 10, fill=color)        
 
 
 def add_all(event):
