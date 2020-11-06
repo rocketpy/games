@@ -26,9 +26,11 @@ ship_type_1 = s_x // 5
 ship_type_2 = s_x // 3
 ship_type_3 = s_x // 2
 
-enemy_ships = [[0 for i in range(s_x+1)] for i in range(s_x+1)]
+enemy_ships = [[0 for i in range(s_x+1)] for i in range(s_y+1)]
 
 list_ids = []
+
+cell_points = [[-1 for i in range(s_x+1)] for i in range(s_y+1)]  # list for clicked cells
 
 def closing_window():
     global app
