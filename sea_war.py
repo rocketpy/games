@@ -60,15 +60,20 @@ def show_enemy_ships():
     for i in range(0, s_x):
         for j in range(0, s_y):
             if enemy_ships[j][i] > 0:
+                color = "red"
+                if points[j][i] != -1:
+                    color = "green"                
                 _id = canvas.create_rectangle(i * step_x, j * step_y, i * step_x + step_x, j * step_y + step_y, fill="red")
                 list_ids.append(_id)
     
 def start_new_game():
     global list_ids
+    global cell_points
     for i in list_ids:
         canvas.delete(i)
     list_ids = []
     gen_enemy_ships()
+    cell_points = [[-1 for i in range(s_x)] for i in range(s_y)] 
         
 btn_1 = Button(tk, text="Show enemy ships", command=show_enemy_ships)
 btn_1.place(x=size_canv_x+20, y=30)
