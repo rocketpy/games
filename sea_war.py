@@ -97,6 +97,18 @@ def draw_point(x, y):
         list_ids.append(id_1)
         list_ids.append(id_2)        
 
+def check_winner(x, y):
+    win = False
+    if enemy_ships[y][x] > 0:
+        boom[y][x] = enemy_ships[y][x]
+    sum_enemy_ships = sum(sum(i) for i in zip(*enemy_ships))
+    sum_boom = sum(sum(i) for i in zip(*boom))
+    print(sum_enemy_ships, sum_boom)
+    if sum_enemy_ships == sum_boom:
+        win = True
+    return win        
+        
+               
 def add_all(event):
     global points
     _type = 0
