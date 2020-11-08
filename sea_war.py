@@ -98,6 +98,7 @@ def draw_point(x, y):
         list_ids.append(id_2)        
 
 def add_all(event):
+    global points
     _type = 0
     if event.num == 3:
         _type = 1
@@ -112,6 +113,9 @@ def add_all(event):
         if points[ip_y][ip_x] == -1:
             points[ip_y][ip_x] = _type        
             draw_point(cell_x, cell_y)
+            if check_winner():
+                print("You Win !")
+                points = [[10 for i in range(s_x)] for i in range(s_y)]            
     
 canvas.bind_all("<Button-1>", add_all)  # left mouse button
 canvas.bind_all("<Button-3>", add_all)  # right mouse button
