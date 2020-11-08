@@ -71,11 +71,13 @@ def show_enemy_ships():
 def start_new_game():
     global list_ids
     global cell_points
+    global boom
     for i in list_ids:
         canvas.delete(i)
     list_ids = []
     gen_enemy_ships()
     cell_points = [[-1 for i in range(s_x)] for i in range(s_y)] 
+    boom = [[0 for i in range(s_x)] for i in range(s_y)]    
         
 btn_1 = Button(tk, text="Show enemy ships", command=show_enemy_ships)
 btn_1.place(x=size_canv_x+20, y=30)
@@ -105,7 +107,7 @@ def check_winner(x, y):
         boom[y][x] = enemy_ships[y][x]
     sum_enemy_ships = sum(sum(i) for i in zip(*enemy_ships))
     sum_boom = sum(sum(i) for i in zip(*boom))
-    print(sum_enemy_ships, sum_boom)
+    # print(sum_enemy_ships, sum_boom)
     if sum_enemy_ships == sum_boom:
         win = True
     return win        
@@ -136,7 +138,8 @@ def add_all(event):
         if points[ip_y][ip_x] == -1:
             points[ip_y][ip_x] = _type        
             draw_point(cell_x, cell_y)
-            if check_winner():
+            # if check_winner(ip_x, ip_y):            
+            if check_winner_2():
                 print("You Win !")
                 points = [[10 for i in range(s_x)] for i in range(s_y)]            
     
