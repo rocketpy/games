@@ -32,6 +32,8 @@ list_ids = []
 
 cell_points = [[-1 for i in range(s_x)] for i in range(s_y)]  # list for clicked cells
 
+boom = [[0 for i in range(s_x)] for i in range(s_y)]
+
 def closing_window():
     global app
     if messagebox.askokcancel("Exit", "Do you want to exit ?"):
@@ -107,7 +109,16 @@ def check_winner(x, y):
     if sum_enemy_ships == sum_boom:
         win = True
     return win        
-        
+
+def check_winner_2():
+    win = True
+    for i in range(0, s_x):
+        for j in range(0, s_y):
+            if enemy_ships[j][i] > 0:
+                if points[j][i] == -1:
+                    win = False
+    print(win)
+    return win
                
 def add_all(event):
     global points
