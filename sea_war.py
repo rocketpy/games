@@ -44,9 +44,9 @@ tk.protocol(WM_DELETE_WINDOW, closing_window)
 tk.title("Sea  Buttle")
 tk.resizable(0, 0)  # no change window
 tk.wm_attributes("-topmost", 1)  # window will upper other windows
-
-canvas = Canvas(tk, width=size_canv_x+menu_field_x, height=size_canv_y, bd=0, highlightthickness=0)
-canvas.create_rectangle(0, 0, size_canv_x, size_canv_y, fill="white")  # fill - white color field
+canvas = Canvas(tk, width=size_canvas_x + menu_x + size_canvas_x, height=size_canvas_y + menu_y, bd=0, highlightthickness=0)
+canvas.create_rectangle(0, 0, size_canvas_x, size_canvas_y, fill="white")
+canvas.create_rectangle(size_canvas_x + menu_x, 0, size_canvas_x + menu_x + size_canvas_x, size_canvas_y, fill="lightyellow")
 canvas.pack()
 tk.update()
 
