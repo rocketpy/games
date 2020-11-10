@@ -18,7 +18,7 @@ step_y = size_canv_y // s_y
 # size_canv_x = step_x * s_x  # using this if change size of cells
 # size_canv_y = step_y 8 s_y  # same
 
-menu_field_x = 250  #  field for menu
+menu_field_x = step_x * 4 # 250  #  field for menu
 
 ships = s_x // 2  # max quant 
 
@@ -50,11 +50,11 @@ canvas.create_rectangle(size_canvas_x + menu_x, 0, size_canvas_x + menu_x + size
 canvas.pack()
 tk.update()
 
-def create_table():
+def create_table(offset_x=0):
     for i in range(0, s_x + 1):
-        canvas.create_line(step_x * i, 0, step_x * i, size_canv_y)
+        canvas.create_line(offset_x + step_x * i, 0, offset_x + step_x * i, size_canvas_y)
     for i in range(0, s_y + 1):
-        canvas.create_line(0, step_y * i, size_canv_x, step_y * i)
+        canvas.create_line(offset_x, step_y * i, offset_x + size_canvas_x, step_y * i)
         
 create_table()
 
