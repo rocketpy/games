@@ -19,6 +19,7 @@ step_y = size_canv_y // s_y
 # size_canv_y = step_y 8 s_y  # same
 
 menu_field_x = step_x * 4 # 250  #  field for menu
+menu_y = 40
 
 ships = s_x // 2  # max quant 
 
@@ -46,7 +47,7 @@ tk.resizable(0, 0)  # no change window
 tk.wm_attributes("-topmost", 1)  # window will upper other windows
 canvas = Canvas(tk, width=size_canvas_x + menu_x + size_canvas_x, height=size_canvas_y + menu_y, bd=0, highlightthickness=0)
 canvas.create_rectangle(0, 0, size_canvas_x, size_canvas_y, fill="white")
-canvas.create_rectangle(size_canvas_x + menu_x, 0, size_canvas_x + menu_x + size_canvas_x, size_canvas_y, fill="lightyellow")
+canvas.create_rectangle(size_canvas_x + menu_x, 0, size_canvas_x + menu_x + size_canvas_x, size_canvas_y, fill="white")
 canvas.pack()
 tk.update()
 
@@ -57,6 +58,12 @@ def create_table(offset_x=0):
         canvas.create_line(offset_x, step_y * i, offset_x + size_canvas_x, step_y * i)
         
 create_table()
+create_table(size_canvas_x + menu_x)
+
+t0 = Label(tk, text="Gamer №1", font=("Helvetica", 16))
+t0.place(x=size_canvas_x // 2 - t0.winfo_reqwidth() // 2, y=size_canvas_y+3)
+t1 = Label(tk, text="Gamer №2", font=("Helvetica", 16))
+t1.place(x=size_canvas_x + menu_x + size_canvas_x // 2 - t1.winfo_reqwidth() // 2, y=size_canvas_y+3)
 
 def show_enemy_ships():
     for i in range(0, s_x):
