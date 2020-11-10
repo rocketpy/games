@@ -65,6 +65,9 @@ t0.place(x=size_canvas_x // 2 - t0.winfo_reqwidth() // 2, y=size_canvas_y+3)
 t1 = Label(tk, text="Gamer №2", font=("Helvetica", 16))
 t1.place(x=size_canvas_x + menu_x + size_canvas_x // 2 - t1.winfo_reqwidth() // 2, y=size_canvas_y+3)
 
+t0.configure(bg="red")
+t0.configure(bg="#f0f0f0")
+
 def show_enemy_ships():
     for i in range(0, s_x):
         for j in range(0, s_y):
